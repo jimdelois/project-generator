@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+		name="{REPOSITORY} | {PACKAGE}"
+		basedir="../"
+		default="build"
+		description="The primary build file for the {REPOSITORY} {PACKAGE} Library"
+		>
+
+
+	<property name="exec.php" value="/usr/bin/php" override="true" />
+	<property name="dir.build" value="build" />
+
+
+	<tstamp>
+		<format property="timestamp" pattern="%Y-%m-%d %H:%M" />
+	</tstamp>
+
+
+
+	<target name="build" depends="prepare,test-unit,documentapi" />
+
+	<target name="clean">
+		<delete dir="${dir.build}" includeemptydirs="true" verbose="true" />
+	</target>
+
+
+
+
+	<target name="prepare" depends="clean" description="Prepares files and directories for build">
+		<mkdir dir="${dir.build}" />
+	</target>
+
+
+
+
+	<target name="lint">
+		<phplint deprecatedAsError="true" haltonfailure="true">
+			<fileset dir="src">
+				<include name="**/*.php"/>
+			</fileset>
+			<fileset dir="tests">
+				<include name="**/*.php"/>
+			</fileset>
+		</phplint>
+	</target>
+
+
+	<target name="documentapi">
+		<includepath classpath="./vendor/phpdocumentor" />
+
+		<mkdir dir="${dir.build}/docs/api" />
+
+		<phpdoc2 title="API Documentation"
+				 destdir="${dir.build}/docs/api"
+				 template="clean">
+			<fileset dir="./src">
+				<include name="**/*.php" />
+			</fileset>
+		</phpdoc2>
+	</target>
+
+
+
+
+
+
+	<target name="test-unit" depends="lint">
+		<exec
+            executable="./vendor/bin/phpunit"
+            dir="../"
+            checkreturn="true"
+            passthru="true"
+		>
+			<!-- <arg value="- -testdox" /> -->
+		</exec>
+	</target>
+
+
+
+
+	<target name="package" depends="build">
+
+
+		<mkdir dir="${dir.build}/artifacts/src-package" />
+
+		<copy todir="${dir.build}/artifacts/src-package" >
+			<fileset dir="../">
+				<include name="src/**/*" />
+				<include name="tests/**/*" />
+			</fileset>
+			<filelist dir="../" files="composer.json,LICENSE,README.md"/>
+		</copy>
+
+		<exec
+				executable="tar"
+				checkreturn="true"
+				dir="${dir.build}/artifacts"
+				>
+			<arg value="-cvzf" /><arg path="src-package.tar.gz" />
+			<arg path="src-package/" />
+		</exec>
+
+		<delete dir="${dir.build}/artifacts/src-package" includeemptydirs="true" verbose="true" />
+	</target>
+
+
+
+</project>
