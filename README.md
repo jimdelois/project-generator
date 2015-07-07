@@ -5,7 +5,7 @@ This project is intended to provide a quick means to create a skeleton component
 ## Usage
 
 ```bash
-./bin/template component:create
+./bin/generator component:create
 ```
 
 Then follow the on-screen instructions.
