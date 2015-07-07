@@ -30,7 +30,7 @@ class Project {
 
   protected $_install_dir;
 
-  public function __construct( $fqn ) {
+  public function setFqn( $fqn ) {
 
     list( $this->_fqn, $this->_vendor, $this->_package ) = $this->_validatePackageFqn( $fqn );
 
@@ -170,6 +170,15 @@ class Project {
 
     $this->_install_dir = new \SplFileInfo( $dir );
     return $this;
+
+  }
+
+  /**
+   * @return \SplFileInfo
+   */
+  public function getInstallDir() {
+
+    return $this->_install_dir;
 
   }
 

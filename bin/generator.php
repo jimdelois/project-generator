@@ -17,6 +17,6 @@ $application     = new Application();
 $filesystem      = new Filesystem( new Adapter( '/' ) );
 $asset_base_path = new \SplFileInfo( __DIR__ . '/../assets/component' );
 
-$application->add( new ComponentCreateCommand( 'component:create', $asset_base_path, $filesystem ) );
+$application->add( new ComponentCreateCommand( 'component:create', $filesystem, $asset_base_path ) );
 
 $application->run();

@@ -4,8 +4,9 @@ namespace DeLois\ProjectGenerator\Model;
 
 class Author {
 
-  const DEFAULT_NAME  = 'Jim DeLois';
-  const DEFAULT_EMAIL = 'jim.delois@improvframework.org';
+  const DEFAULT_NAME     = 'Jim DeLois';
+  const DEFAULT_EMAIL    = 'jim.delois@improvframework.org';
+  const DEFAULT_HOMEPAGE = 'https://www.improvframework.org';
 
   protected $_name;
 
