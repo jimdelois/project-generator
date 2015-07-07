@@ -3,7 +3,7 @@
 		name="__TOKEN_VENDOR_DISPLAY__ | __TOKEN_PACKAGE_DISPLAY__"
 		basedir="../../..//"
 		default="build"
-		description="The primary build file for the __TOKEN_VENDOR_DISPLAY__ __TOKEN_PACKAGE_DISPLAY__ Library"
+		description="The primary build file for the __TOKEN_PACKAGE_DISPLAY__ Library by __TOKEN_VENDOR_DISPLAY__"
 		>
 
 
