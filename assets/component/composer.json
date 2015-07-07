@@ -1,0 +1,38 @@
+{
+    "name" : "__TOKEN_FQN__" ,
+    "description": "__TOKEN_DESCRIPTION__",
+    "type": "library",
+    "keywords": [
+        "keywords"
+    ],
+    "homepage": "__TOKEN_HOMEPAGE__",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "__TOKEN_AUTHOR_NAME__",
+            "email": "__TOKEN_AUTHOR_EMAIL__",
+            "homepage": "__TOKEN_AUTHOR_HOMEPAGE__"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.6.0"
+    },
+    "require-dev" : {
+        "phpunit/phpunit": "~4.7.5",
+        "phing/phing": "~2.10.0",
+        "phpdocumentor/phpdocumentor": "~2.8.0",
+        "fiunchinho/phpunit-randomizer": "~2.0.0",
+        "php": ">=5.6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "__TOKEN_NAMESPACE_COMPOSER__\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "__TOKEN_NAMESPACE_COMPOSER__\\Test\\": "tests/lib"
+        }
+    }
+}
