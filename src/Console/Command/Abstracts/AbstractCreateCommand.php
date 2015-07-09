@@ -161,7 +161,7 @@ abstract class AbstractCreateCommand extends Command {
       ],
       [
         TokenReplacementFilter::PARAM_KEY_SEARCH  => '__TOKEN_NAMESPACE_COMPOSER__\\\\',
-        TokenReplacementFilter::PARAM_KEY_REPLACE => str_replace( '\\', '\\'.'\\', $this->_project->getNamespace() )
+        TokenReplacementFilter::PARAM_KEY_REPLACE => ltrim( str_replace( '\\', '\\'.'\\', $this->_project->getNamespace() ), '\\' )
       ],
       [
         TokenReplacementFilter::PARAM_KEY_SEARCH  => '__TOKEN_FQN__',
