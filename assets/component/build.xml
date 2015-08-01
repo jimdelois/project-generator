@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project
 		name="__TOKEN_VENDOR_DISPLAY__ | __TOKEN_PACKAGE_DISPLAY__"
-		basedir="../../..//"
+		basedir="."
 		default="build"
 		description="The primary build file for the __TOKEN_PACKAGE_DISPLAY__ Library by __TOKEN_VENDOR_DISPLAY__"
 		>
@@ -16,8 +16,10 @@
 	</tstamp>
 
 
+	<target name="test" depends="prepare,sniff,test-unit" />
 
-	<target name="build" depends="prepare,test-unit,documentapi" />
+	<target name="build" depends="test,documentapi" />
+
 
 	<target name="clean">
 		<delete dir="${dir.build}" includeemptydirs="true" verbose="true" />
@@ -44,6 +46,38 @@
 		</phplint>
 	</target>
 
+	<target name="sniff" depends="lint">
+
+		<includepath classpath="./vendor/squizlabs/php_codesniffer/scripts" />
+
+		<mkdir dir="${dir.build}/reports" />
+
+		<phpcodesniffer
+				standard="PSR2"
+				docGenerator="HTML"
+				docFile="${dir.build}/reports/sniffs-guide.html"
+				verbosity="0"
+				haltonerror="true"
+				haltonwarning="true"
+				showSniffs="false"
+				showSources="true"
+				showWarnings="true"
+				>
+
+			<formatter type="full" outfile="${dir.build}/reports/sniffs-full.txt"/>
+			<formatter type="summary" outfile="${dir.build}/reports/sniffs-summary.txt"/>
+			<formatter type="checkstyle" outfile="${dir.build}/reports/sniffs-checkstyle.xml"/>
+
+			<fileset dir="src">
+				<include name="**/*.php"/>
+			</fileset>
+			<fileset dir="tests">
+				<include name="**/*.php"/>
+			</fileset>
+
+		</phpcodesniffer>
+	</target>
+
 
 	<target name="documentapi">
 		<includepath classpath="./vendor/phpdocumentor" />
@@ -53,7 +87,7 @@
 		<phpdoc2 title="API Documentation"
 				 destdir="${dir.build}/docs/api"
 				 template="clean">
-			<fileset dir="../../src">
+			<fileset dir="./src">
 				<include name="**/*.php" />
 			</fileset>
 		</phpdoc2>
@@ -67,7 +101,7 @@
 	<target name="test-unit" depends="lint">
 		<exec
             executable="./vendor/bin/phpunit"
-            dir="../../..//"
+            dir="."
             checkreturn="true"
             passthru="true"
 		>
@@ -84,11 +118,11 @@
 		<mkdir dir="${dir.build}/artifacts/src-package" />
 
 		<copy todir="${dir.build}/artifacts/src-package" >
-			<fileset dir="../../..//">
+			<fileset dir=".">
 				<include name="src/**/*" />
 				<include name="tests/**/*" />
 			</fileset>
-			<filelist dir="../../..//" files="composer.json,LICENSE,README.md"/>
+			<filelist dir="." files="composer.json,LICENSE,README.md"/>
 		</copy>
 
 		<exec

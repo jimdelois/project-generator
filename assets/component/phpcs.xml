@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<ruleset name="__TOKEN_PACKAGE__">
+   <description>The coding standard for the __TOKEN_PACKAGE_DISPLAY__ project</description>
+
+   <file>./src</file>
+   <file>./tests</file>
+
+   <arg name="report" value="full"/>
+   <arg name="report-width" value="auto"/>
+   <arg value="wp"/>
+   <arg name="colors"/>
+
+   <rule ref="PSR2"/>
+</ruleset>

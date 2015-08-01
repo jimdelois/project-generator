@@ -1,5 +1,14 @@
-/.idea/
+# Vendor Definitions
+/composer.lock
 
-/vendor/
+# Vendor Directories
+/vendor
 
+# Editor/IDE Artifacts
+/.idea
+
+# User-Specific Overrides
 /phpunit.xml
+
+# Build artifacts
+/build
