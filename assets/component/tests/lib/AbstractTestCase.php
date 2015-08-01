@@ -2,13 +2,14 @@
 
 namespace __TOKEN_NAMESPACE__\Test;
 
-class AbstractTestCase extends \PHPUnit_Framework_TestCase {
+class AbstractTestCase extends \PHPUnit_Framework_TestCase
+{
 
-  protected function _getFullMock( $class_name ) {
+    protected function getFullMock($class_name)
+    {
 
-    return $this->getMockBuilder( $class_name )
-      ->disableOriginalConstructor()
-      ->getMock();
-  }
-
+        return $this->getMockBuilder($class_name)
+            ->disableOriginalConstructor()
+            ->getMock();
+    }
 }
