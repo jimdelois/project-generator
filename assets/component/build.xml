@@ -9,6 +9,7 @@
 
 	<property name="exec.php" value="/usr/bin/php" override="true" />
 	<property name="dir.build" value="build" />
+	<property name="dir.build.reports" value="${dir.build}/reports" />
 
 
 	<tstamp>
@@ -50,12 +51,12 @@
 
 		<includepath classpath="./vendor/squizlabs/php_codesniffer/scripts" />
 
-		<mkdir dir="${dir.build}/reports" />
+		<mkdir dir="${dir.build.reports}" />
 
 		<phpcodesniffer
 				standard="PSR2"
 				docGenerator="HTML"
-				docFile="${dir.build}/reports/sniffs-guide.html"
+				docFile="${dir.build.reports}/sniffs-guide.html"
 				verbosity="0"
 				haltonerror="true"
 				haltonwarning="true"
@@ -64,9 +65,9 @@
 				showWarnings="true"
 				>
 
-			<formatter type="full" outfile="${dir.build}/reports/sniffs-full.txt"/>
-			<formatter type="summary" outfile="${dir.build}/reports/sniffs-summary.txt"/>
-			<formatter type="checkstyle" outfile="${dir.build}/reports/sniffs-checkstyle.xml"/>
+			<formatter type="full" outfile="${dir.build.reports}/sniffs-full.txt"/>
+			<formatter type="summary" outfile="${dir.build.reports}/sniffs-summary.txt"/>
+			<formatter type="checkstyle" outfile="${dir.build.reports}/sniffs-checkstyle.xml"/>
 
 			<fileset dir="src">
 				<include name="**/*.php"/>
@@ -76,6 +77,31 @@
 			</fileset>
 
 		</phpcodesniffer>
+	</target>
+
+	<target name="loc" depends="sniff">
+
+		<includepath classpath="./vendor/phploc/phploc" />
+
+		<mkdir dir="${dir.build.reports}" />
+
+		<property name="path.reports.loc" value="${dir.build.reports}/phploc-report.txt" />
+
+		<delete file="${path.reports.loc}" verbose="true" />
+
+		<phploc reportType="txt" reportDirectory="${dir.build.reports}" reportName="phploc-report">
+			<fileset dir="src">
+				<include name="**/*.php"/>
+			</fileset>
+		</phploc>
+
+		<exec
+				executable="cat"
+				checkreturn="false"
+				passthru="true">
+			<arg path="${path.reports.loc}" />
+		</exec>
+
 	</target>
 
 
@@ -100,7 +126,7 @@
 
 	<target name="test-unit" depends="lint">
 		<exec
-            executable="./vendor/bin/phpunit"
+            executable="./vendor/bin/phpunit-randomizer"
             dir="."
             checkreturn="true"
             passthru="true"
