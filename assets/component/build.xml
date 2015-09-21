@@ -11,6 +11,7 @@
 	<property name="dir.build" value="build" />
 	<property name="dir.build.reports" value="${dir.build}/reports" />
 
+	<includepath classpath="./vendor/bin" />
 
 	<tstamp>
 		<format property="timestamp" pattern="%Y-%m-%d %H:%M" />
@@ -52,8 +53,6 @@
 
 	<target name="sniff" depends="lint">
 
-		<includepath classpath="./vendor/squizlabs/php_codesniffer/scripts" />
-
 		<mkdir dir="${dir.build.reports}" />
 
 		<phpcodesniffer
@@ -84,8 +83,6 @@
 
 	<target name="loc" depends="sniff">
 
-		<includepath classpath="./vendor/phploc/phploc" />
-
 		<mkdir dir="${dir.build.reports}" />
 
 		<property name="path.reports.loc" value="${dir.build.reports}/phploc-report.txt" />
@@ -109,8 +106,6 @@
 
 	<target name="cpd" depends="sniff">
 
-		<includepath classpath="./vendor/bin" />
-
 		<mkdir dir="${dir.build.reports}" />
 
 		<property name="path.reports.phpcpd.xml" value="${dir.build.reports}/phpcpd-report.xml" />
@@ -132,7 +127,6 @@
 
 
 	<target name="documentapi">
-		<includepath classpath="./vendor/phpdocumentor" />
 
 		<mkdir dir="${dir.build}/docs/api" />
 
