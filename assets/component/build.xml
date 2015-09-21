@@ -17,9 +17,12 @@
 	</tstamp>
 
 
+
+	<target name="static-analysis" depends="loc,cpd" />
+
 	<target name="test" depends="prepare,sniff,test-unit" />
 
-	<target name="build" depends="test,documentapi" />
+	<target name="build" depends="static-analysis,test,documentapi" />
 
 
 	<target name="clean">
@@ -101,6 +104,29 @@
 				passthru="true">
 			<arg path="${path.reports.loc}" />
 		</exec>
+
+	</target>
+
+	<target name="cpd" depends="sniff">
+
+		<includepath classpath="./vendor/bin" />
+
+		<mkdir dir="${dir.build.reports}" />
+
+		<property name="path.reports.phpcpd.xml" value="${dir.build.reports}/phpcpd-report.xml" />
+		<property name="path.reports.phpcpd.txt" value="${dir.build.reports}/phpcpd-report.txt" />
+
+		<delete file="${path.reports.phpcpd.xml}" verbose="true" />
+		<delete file="${path.reports.phpcpd.txt}" verbose="true" />
+
+		<phpcpd>
+			<fileset dir="src">
+				<include name="**/*.php"/>
+			</fileset>
+			<formatter type="pmd" outfile="${path.reports.phpcpd.xml}"/>
+			<formatter type="default" outfile="${path.reports.phpcpd.txt}"/>
+			<formatter type="default" useFile="false" outfile="${path.reports.phpcpd.txt}"/>
+		</phpcpd>
 
 	</target>
 
