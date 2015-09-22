@@ -19,7 +19,7 @@
 
 
 
-	<target name="static-analysis" depends="loc,cpd" />
+	<target name="static-analysis" depends="loc,cpd,pdepend" />
 
 	<target name="test" depends="prepare,sniff,test-unit" />
 
@@ -124,6 +124,34 @@
 		</phpcpd>
 
 	</target>
+
+	<target name="pdepend">
+
+		<mkdir dir="${dir.build.reports}" />
+
+		<delete file="${dir.build.reports}/pdepend-chart.svg" verbose="true" />
+		<delete file="${dir.build.reports}/pdepend.xml" verbose="true" />
+		<delete file="${dir.build.reports}/pdepend-overview-pyramid.svg" verbose="true" />
+		<delete file="${dir.build.reports}/pdepend-phpunit.xml " verbose="true" />
+		<delete file="${dir.build.reports}/pdepend-summary.xml" verbose="true" />
+
+		<phpdepend>
+			<fileset dir="src">
+				<include name="**/*.php"/>
+			</fileset>
+
+			<!-- <analyzer type="coderank-mode" value="method"/> -->
+
+			<logger type="jdepend-xml" outfile="reports/jdepend.xml"/>
+			<logger type="jdepend-chart" outfile="${dir.build.reports}/pdepend-chart.svg" />
+			<logger type="jdepend-xml" outfile="${dir.build.reports}/pdepend.xml" />
+			<logger type="overview-pyramid" outfile="${dir.build.reports}/pdepend-overview-pyramid.svg" />
+			<logger type="summary-xml" outfile="${dir.build.reports}/pdepend-summary.xml" />
+
+		</phpdepend>
+
+	</target>
+
 
 
 	<target name="documentapi">
