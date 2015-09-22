@@ -71,6 +71,8 @@
 			<formatter type="summary" outfile="${dir.build.reports}/sniffs-summary.txt"/>
 			<formatter type="checkstyle" outfile="${dir.build.reports}/sniffs-checkstyle.xml"/>
 
+			<formatter type="full" outfile="irrelevant-value" usefile="false"/>
+
 			<fileset dir="src">
 				<include name="**/*.php"/>
 			</fileset>
