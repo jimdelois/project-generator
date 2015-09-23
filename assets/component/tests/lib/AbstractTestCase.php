@@ -2,7 +2,7 @@
 
 namespace __TOKEN_NAMESPACE__\Test;
 
-class AbstractTestCase extends \PHPUnit_Framework_TestCase
+abstract class AbstractTestCase extends \PHPUnit_Framework_TestCase
 {
 
     protected function getFullMock($class_name)
