@@ -2,6 +2,10 @@
 <phpunit
     colors="true"
     forceCoversAnnotation="true"
+    beStrictAboutTestsThatDoNotTestAnything="true"
+    checkForUnintentionallyCoveredCode="true"
+    beStrictAboutOutputDuringTests="true"
+    beStrictAboutChangesToGlobalState="true"
     verbose="true"
 >
 
