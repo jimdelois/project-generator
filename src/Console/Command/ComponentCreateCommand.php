@@ -20,7 +20,7 @@ class ComponentCreateCommand extends AbstractCreateCommand {
   public function __construct( $name = null, FilesystemInterface $filesystem, \SplFileInfo $asset_base ) {
 
     if ( $asset_base->getRealPath() === false || !$asset_base->isDir() || !$asset_base->isReadable()) {
-      throw new \RuntimeException( sprintf( 'The configured Asset Base ("%s") is not a readable directory.' ) );
+      throw new \RuntimeException( sprintf( 'The configured Asset Base ("%s") is not a readable directory.', $asset_base->getRealPath() ) );
     }
     $this->_asset_base = $asset_base;
     parent::__construct( $name, $filesystem );
