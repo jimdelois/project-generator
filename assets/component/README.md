@@ -11,6 +11,12 @@ TODO: [Dependency Status](https://www.versioneye.com/user/projects "Click to Set
 
 __TOKEN_DESCRIPTION__
 
+## Installation ##
+
+```
+TODO: Directions here.
+```
+
 [![License](https://poser.pugx.org/__TOKEN_FQN__/license)](https://packagist.org/packages/__TOKEN_FQN__)
 [![Latest Stable Version](https://poser.pugx.org/__TOKEN_FQN__/v/stable)](https://packagist.org/packages/__TOKEN_FQN__)
 [![Latest Unstable Version](https://poser.pugx.org/__TOKEN_FQN__/v/unstable)](https://packagist.org/packages/__TOKEN_FQN__)
