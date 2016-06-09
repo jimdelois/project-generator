@@ -1,5 +1,5 @@
 {
-    "name" : "__TOKEN_FQN__" ,
+    "name": "__TOKEN_FQN__",
     "description": "__TOKEN_DESCRIPTION__",
     "type": "library",
     "keywords": [
@@ -18,7 +18,7 @@
     "require": {
         "php": ">=5.6.0"
     },
-    "require-dev" : {
+    "require-dev": {
         "fiunchinho/phpunit-randomizer": "^2.0",
         "pdepend/pdepend": "^2.2",
         "phing/phing": "^2.14",
