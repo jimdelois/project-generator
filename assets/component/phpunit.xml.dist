@@ -32,11 +32,11 @@
     </filter>
 
     <logging>
-        <log type="junit" target="build/reports/phpunit-log-junit.xml" />
-        <log type="tap" target="build/reports/phpunit-log-tap.tap" />
-        <log type="coverage-clover" target="build/reports/phpunit-coverage-clover.xml" />
-        <log type="coverage-html" target="build/reports/phpunit-coverage-html" title="Improv.ArgParse" />
-        <log type="coverage-text" target="build/reports/phpunit-coverage-text.txt" title="Improv.ArgParse" />
+        <log type="junit" target="build/reports/phpunit-log-junit.xml"/>
+        <log type="tap" target="build/reports/phpunit-log-tap.tap"/>
+        <log type="coverage-clover" target="build/reports/phpunit-coverage-clover.xml"/>
+        <log type="coverage-html" target="build/reports/phpunit-coverage-html" title="Improv.ArgParse"/>
+        <log type="coverage-text" target="build/reports/phpunit-coverage-text.txt" title="Improv.ArgParse"/>
     </logging>
 
 </phpunit>
