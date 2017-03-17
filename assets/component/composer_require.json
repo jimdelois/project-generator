@@ -1,0 +1,19 @@
+{
+    "require": [
+    ],
+    "require-dev": {
+        "pdepend/pdepend": "latest",
+        "phing/phing": "latest",
+        "phpdocumentor/phpdocumentor": "latest",
+        "phploc/phploc": "latest",
+        "phpmd/phpmd": "latest",
+        "phpmetrics/phpmetrics": "^1.10",
+        "phpunit/phpunit": "latest",
+        "satooshi/php-coveralls": "latest",
+        "sebastian/phpcpd": "^2.0",
+        "squizlabs/php_codesniffer": "latest"
+    },
+    "require-dev-maybes": {
+        "fiunchinho/phpunit-randomizer": "latest"
+    }
+}

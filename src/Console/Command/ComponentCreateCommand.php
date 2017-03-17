@@ -7,71 +7,83 @@ use League\Flysystem\FilesystemInterface;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class ComponentCreateCommand extends AbstractCreateCommand {
+class ComponentCreateCommand extends AbstractCreateCommand
+{
 
 
+    /**
+     * @var \SplFileInfo
+     */
+    protected $asset_base;
 
-  /**
-   * @var \SplFileInfo
-   */
-  protected $_asset_base;
 
+    public function __construct($name, FilesystemInterface $filesystem, \SplFileInfo $asset_base)
+    {
 
-  public function __construct( $name = null, FilesystemInterface $filesystem, \SplFileInfo $asset_base ) {
+        if ($asset_base->getRealPath() === false || !$asset_base->isDir() || !$asset_base->isReadable()) {
+            throw new \RuntimeException(
+                sprintf('The configured Asset Base ("%s") is not a readable directory.', $asset_base->getRealPath())
+            );
+        }
+        $this->asset_base = $asset_base;
+        parent::__construct($name, $filesystem);
 
-    if ( $asset_base->getRealPath() === false || !$asset_base->isDir() || !$asset_base->isReadable()) {
-      throw new \RuntimeException( sprintf( 'The configured Asset Base ("%s") is not a readable directory.', $asset_base->getRealPath() ) );
     }
-    $this->_asset_base = $asset_base;
-    parent::__construct( $name, $filesystem );
 
-  }
+    protected function configure()
+    {
 
-  protected function configure() {
+        $this->setDescription('Create a new Component Project from the Template');
 
-    $this->setDescription( 'Create a new Component Project from the Template' );
+    }
 
-  }
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
 
-  protected function execute( InputInterface $input, OutputInterface $output ) {
+        // Capture User Input
 
-    // Capture User Input
+        $this->promptForPackageFqn($input, $output);
 
-    $this->_promptForPackageFqn( $input, $output );
+        $this->promptForVendorPackage($input, $output);
 
-    $this->_promptForVendorPackage( $input, $output );
+        $this->promptForVendorPackageDisplay($input, $output);
 
-    $this->_promptForVendorPackageDisplay( $input, $output );
+        $this->promptForHomepage($input, $output);
 
-    $this->_promptForHomepage( $input, $output );
+        $this->promptForRepositoryUrl($input, $output);
 
-    $this->_promptForAuthor( $input, $output );
+        $this->promptForAuthor($input, $output);
 
-    $this->_promptForDescription( $input, $output );
+        $this->promptForDescription($input, $output);
 
-    $this->_promptForBaseNamespace( $input, $output );
+        $this->promptForBaseNamespace($input, $output);
 
-    $this->_promptForFilesystemPath( $input, $output );
+        $this->promptForFilesystemPath($input, $output);
 
+        // Copy Project Assets
 
-    // Copy Project Assets
+        $this->copyAssetsFrom($this->asset_base);
 
-    $this->_copyAssetsFrom( $this->_asset_base );
+        // Composer
 
+        $this->composerRequire($this->asset_base, $output);
 
-    // Complete.
+        // Source Control
 
-    $output->writeln(
-      sprintf(
-        '<info>Successfully created: %s | %s (%s)</info>',
-        $this->_project->getVendorDisplay(),
-        $this->_project->getPackageDisplay(),
-        $this->_project->getFqn()
-      )
-    );
+        $this->gitInit($output);
 
-  }
+        // Complete.
 
+        $output->writeln(
+            sprintf(
+                '<info>Successfully created: %s | %s (%s)</info>',
+                $this->project->getVendorDisplay(),
+                $this->project->getPackageDisplay(),
+                $this->project->getFqn()
+            )
+        );
+
+    }
 
 
 }
