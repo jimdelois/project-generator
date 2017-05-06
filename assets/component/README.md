@@ -27,7 +27,8 @@ composer require __TOKEN_FQN__
 ### Manual
 
 Each release is available for download from the [releases page on Github](__TOKEN_HOMEPAGE__/releases).
-Alternatively, you may fork, clone, and build the package. Then, install into the location of your choice.
+Alternatively, you may fork, clone, and build the package (please see the `CONTRIBUTING.md` for
+build target information). Then, install into the location of your choice.
 
 This package conforms to PSR-4 autoloading standards.
 
@@ -41,9 +42,18 @@ TODO: Directions here.
 
 Please note that this is a new package, currently in beta. Feel free to reach out with ideas, bug reports, or contribution questions.
 
+## Additional Documentation
+
+You may to produce and peruse API documentation for this package
+(please see the `CONTRIBUTING.md` for build target information).
+
 ## Change Log
 
 Please see the [Change Log File](__TOKEN_HOMEPAGE__/blob/master/CHANGELOG.md)
+
+## Contributing
+
+Please see the [Contributing Overview](__TOKEN_HOMEPAGE__/blob/master/CONTRIBUTING.md)
 
 [![License](https://poser.pugx.org/__TOKEN_FQN__/license)](https://packagist.org/packages/__TOKEN_FQN__)
 [![Latest Stable Version](https://poser.pugx.org/__TOKEN_FQN__/v/stable)](https://packagist.org/packages/__TOKEN_FQN__)
